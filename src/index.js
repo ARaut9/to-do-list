@@ -1,1 +1,3 @@
-console.log("Hello, World");
+import { projects } from '../src/app';
+
+console.log(projects);
