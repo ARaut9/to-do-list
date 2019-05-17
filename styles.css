@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-list-container, .todo-items-container {
+  float: left;
+}
+
+.project-list-container {
+  background-color: #444;
+  width: 25%;
+  height: 100vh;
+  padding-top: 50px;
+  padding-left: 40px;
+  color: #fff;
+}
+
+.todo-items-container {
+  background-color: #eee;
+  width: 75%;
+  height: 100vh;
+  padding-top: 50px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.project-list-container h1 {
+  font-size: 2.7rem;
+  margin-bottom: 20px;
+  margin-right: 30px;
+  float: left;
+}
+
+.project-list-container button {
+  background-color: inherit;
+  /* color: #000; */
+  border: 0;
+  /* font-size: 1.5rem; */
+  padding: 0;
+}
+
+.todo-items-container h1 {
+  font-size: 2.7rem;
+  margin-bottom: 40px;
+}
+
+.todo-items-container ul {
+  border: 3px solid #444;
+}
+
+.todo-items-container li {
+  display: flex;
+  border-bottom: 3px solid #444;
+  font-size: 1.5rem;
+}
+
+.todo-items-container li:last-child {
+  border-bottom: 0;
+}
+
+.todo-items-container li > * {
+  padding: 20px 15px;
+}
