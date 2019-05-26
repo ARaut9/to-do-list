@@ -12,17 +12,24 @@ const project = (title) => {
     return { title, toDoItems, addToDoItem };
 }
 
-const toDoItem = (title, disc, dueDate, isUrgent, isCompleted) => {
-    return { title, disc, dueDate, isUrgent, isCompleted };
+const toDoItem = (title, discription, dueDate, isUrgent, isCompleted) => {
+    return { title, discription, dueDate, isUrgent, isCompleted };
 }
 
-let defaultProject = project("Default");
-let study = project("Study");
+function toggleImportance(toDoItem) {
+    if (toDoItem.isUrgent) {
+        toDoItem.isUrgent = false;
+    } else {
+        toDoItem.isUrgent = true;
+    }
+}
 
-projects.push(defaultProject);
-projects.push(study);
+function toggleCompleteness(toDoItem) {
+    if (toDoItem.isCompleted) {
+        toDoItem.isCompleted = false;
+    } else {
+        toDoItem.isCompleted = true;
+    }
+}
 
-defaultProject.addToDoItem(toDoItem("Buy Milk", "Buy Milk from store", "16/5/2019", true, true));
-defaultProject.addToDoItem(toDoItem("Buy Chesse", "Buy Chesse from store", "16/5/2019", true, false));
-
-export { projects, defaultProject };
+export { projects, project, toDoItem };

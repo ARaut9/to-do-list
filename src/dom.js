@@ -1,33 +1,55 @@
-import { constants } from "zlib";
-
 // Dom Manipulation Module
+import { projects } from './app';
+import { addEventListenerToCheckBox, addEventListenerToPrioritykBox, addEventListenerToExpandOption } from './index';
 
-function renderProjectsList(projects) {
-    const projectList = document.createElement("ul");
+function getProjectsList(projects) {
+    const projectList = document.querySelector("#project-list");
+    if (projectList.children.length > 0) {
+        while (projectList.children.length !== 0) {
+          projectList.removeChild(projectList.lastChild);
+        }
+    }
+
     for (let i = 0; i < projects.length; i++) {
         const projectItem = document.createElement("li");
+        projectItem.setAttribute("id", `${i + 1}`);
         projectItem.innerHTML = projects[i].title;
         projectItem.style.fontSize = "2.2rem";
-        projectItem.style.margin = "25px 0";
+        projectItem.style.padding = "20px";
+        projectItem.style.marginBottom = "10px";
         projectList.appendChild(projectItem);
     }
 
     return projectList;
 }
 
-function renderProjectTitle(project) {
-    const projectTitle = document.createElement("h1");
-    projectTitle.innerHTML = project.title;
+function renderProjectsList() {
+    const projectListContainer = document.querySelector(".project-list-container");
+    const projectList = getProjectsList(projects);
+    projectListContainer.appendChild(projectList);
+}
 
-    return projectTitle;
+function renderProjectName(name) {
+    const projectName = document.querySelector("#project-name-heading");
+    projectName.innerHTML = name;
 }
 
 function renderToDoList(toDoItems) {
-    const toDoList = document.createElement("ul");
+    const toDoList = document.querySelector("#todo-list");
+
+    if (toDoList.children.length > 0) {
+        while (toDoList.children.length !== 0) {
+          toDoList.removeChild(toDoList.lastChild);
+        }
+    }
+
     for (let i = 0; i < toDoItems.length; i++) {
         const toDoItem = document.createElement("li");
+        toDoItem.setAttribute("id", `${i + 1}`);
 
         const taskCompletedCheckbox = document.createElement('div');
+        taskCompletedCheckbox.classList.add("taskCompleteChbx");
+
         if (toDoItems[i].isCompleted) {
             taskCompletedCheckbox.style.backgroundImage = "url('icons/checked.png')";
         } else {
@@ -38,6 +60,8 @@ function renderToDoList(toDoItems) {
         taskCompletedCheckbox.style.flex = 1;
 
         const prioritySelectionBox = document.createElement('div');
+        prioritySelectionBox.classList.add("priorityStatus");
+
         if (toDoItems[i].isUrgent) {
             prioritySelectionBox.style.backgroundImage = "url('icons/important.png')";
         } else {
@@ -56,8 +80,14 @@ function renderToDoList(toDoItems) {
         toDoItemDueDate.style.flex = 5;
 
         const expandOption = document.createElement("div");
-        expandOption.innerHTML = "&#x25BC";
         expandOption.style.flex = 1;
+        const expandOptionBtn = document.createElement("button");
+        expandOptionBtn.innerHTML = "&#x25BC";
+        expandOptionBtn.style.backgroundColor = "inherit";
+        expandOptionBtn.style.border = "0";
+        expandOptionBtn.style.cursor = "pointer";
+        expandOption.appendChild(expandOptionBtn);
+        expandOptionBtn.classList.add("expandBtn");
 
         toDoItem.appendChild(taskCompletedCheckbox);
         toDoItem.appendChild(prioritySelectionBox);
@@ -67,7 +97,19 @@ function renderToDoList(toDoItems) {
         toDoList.appendChild(toDoItem);
     }
 
-    return toDoList;
+    if (toDoList.children.length === 0) {
+        const toDoItem = document.createElement("li");
+        toDoItem.innerHTML = "Click on <strong> Add To Do </strong> Button to add a new To Do Item";
+        toDoItem.style.padding = "30px";
+        toDoList.appendChild(toDoItem);
+    }
+
+    const todoItemsContainer = document.querySelector(".todo-items-container");
+    todoItemsContainer.appendChild(toDoList);
+
+    addEventListenerToCheckBox();
+    addEventListenerToPrioritykBox();
+    addEventListenerToExpandOption();
 }
 
-export { renderProjectsList, renderProjectTitle, renderToDoList };
+export { renderProjectsList, renderProjectName, renderToDoList };
