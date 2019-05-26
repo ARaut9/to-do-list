@@ -12,10 +12,44 @@
     <div class="container">
         <div class="project-list-container">
             <h1>Projects</h1>
-            <button><img src="icons/add-new.png" alt="add new project"></button>
+            <button id="new-project-btn"><img src="icons/add-new.png" alt="add new project"></button>
+            <ul id="project-list"></ul>
         </div>
 
         <div class="todo-items-container">
+            <div class="clearfix">
+                <h1 id="project-name-heading"></h1>
+                <button id="new-todo-btn">Add To Do</button>
+            </div>
+            
+            <ul id="todo-list"></ul>
+        </div>
+
+        <div class="new-project-form-container hidden">
+            <form id="new-project-form">
+                <div id="project-cancel-btn"></div>
+                <label for="project-name">Add New Project</label>
+                <input type="text" id="project-name" placeholder="Enter Project Name">
+
+                <input type="submit" value="Add Project">
+            </form>
+        </div>
+
+        <div class="new-todo-form-container hidden">
+            <form id="new-todo-form">
+                <div id="todo-cancel-btn"></div>
+                <label>Add New To-Do Item</label>
+                <input type="text" id="todo-title" placeholder="Enter Title">
+                <textarea name="" id="todo-description" placeholder="Enter Description"></textarea>
+                <input id="todo-due-date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Enter Due Date">
+
+                <div>
+                    <label>Is Urgent?</label>
+                    <input type="checkbox" id="importance">
+                </div>
+
+                <input type="submit" value="Add To Do">
+            </form>
         </div>
     </div>
     <script src="main.js"></script>
